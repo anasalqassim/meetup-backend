@@ -1,1 +1,1 @@
-web: java --server.port=$PORT -jar target/*.jar
+web: java --server.port=$PORT -jar build/libs/*.jar
