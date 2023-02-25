@@ -32,7 +32,7 @@ public class MeetUpController {
             return ResponseEntity.internalServerError()
                     .body(MeetupResponse
                             .builder()
-                            .state(e.getLocalizedMessage()).build());
+                            .state("sorry "+e.getLocalizedMessage()).build());
         }
 
     }
