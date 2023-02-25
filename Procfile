@@ -1,1 +1,1 @@
-web: java -jar build/libs/*.jar --server.port=$PORT
+web: java -Dserver.port=$PORT -jar target/meetup-0.0.1-SNAPSHOT.jar
