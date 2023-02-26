@@ -1,6 +1,10 @@
-package com.anas.meetup.auth;
+package com.anas.meetup.controller;
 
 
+import com.anas.meetup.auth.AuthenticationService;
+import com.anas.meetup.payload.AuthResponse;
+import com.anas.meetup.payload.AuthenticationRequest;
+import com.anas.meetup.payload.RegisterRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;

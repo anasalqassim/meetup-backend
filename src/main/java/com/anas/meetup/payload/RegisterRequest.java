@@ -1,4 +1,4 @@
-package com.anas.meetup.auth;
+package com.anas.meetup.payload;
 
 
 import lombok.AllArgsConstructor;

@@ -1,7 +1,6 @@
-package com.anas.meetup.meetup;
+package com.anas.meetup.model;
 
 
-import com.anas.meetup.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

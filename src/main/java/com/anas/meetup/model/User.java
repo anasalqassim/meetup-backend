@@ -1,4 +1,4 @@
-package com.anas.meetup.user;
+package com.anas.meetup.model;
 
 
 import jakarta.persistence.*;
@@ -27,6 +27,11 @@ import java.util.List;
 )
 public class User implements UserDetails {
 
+    public enum Role {
+        USER,
+        ADMIN
+    }
+
     @Id
     @GeneratedValue
     private Integer userId;
@@ -36,6 +41,7 @@ public class User implements UserDetails {
             name = "email_address"
     )
     private String email;
+
     private String password;
 
     @Enumerated(EnumType.STRING)

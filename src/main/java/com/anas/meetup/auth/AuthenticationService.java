@@ -2,9 +2,11 @@ package com.anas.meetup.auth;
 
 
 import com.anas.meetup.config.JwtService;
-import com.anas.meetup.user.Role;
-import com.anas.meetup.user.User;
-import com.anas.meetup.user.UserRepo;
+import com.anas.meetup.model.User;
+import com.anas.meetup.payload.AuthResponse;
+import com.anas.meetup.payload.AuthenticationRequest;
+import com.anas.meetup.payload.RegisterRequest;
+import com.anas.meetup.repo.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -27,10 +29,10 @@ public class AuthenticationService {
                 .lastname(request.getLastname())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .role(Role.USER).build();
+                .role(User.Role.USER).build();
 
         userRepo.save(user);
-        System.out.println(user);
+
         var token = jwtService.generateToken(user);
         return  AuthResponse.builder()
                 .token(token)

@@ -1,21 +1,21 @@
-package com.anas.meetup.auth;
+package com.anas.meetup.payload;
 
+
+import com.anas.meetup.model.MeetUp;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthResponse {
+public class MeetupResponse {
 
-    private String token;
-    private String email;
-    private String message;
-    private String httpCode;
-
-
+    String state;
+    List<MeetUp> meetUps;
 
 }

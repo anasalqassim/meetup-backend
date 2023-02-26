@@ -1,6 +1,6 @@
 package com.anas.meetup.config;
 
-import com.anas.meetup.user.UserRepo;
+import com.anas.meetup.repo.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
