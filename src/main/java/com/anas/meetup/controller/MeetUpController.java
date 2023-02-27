@@ -18,8 +18,8 @@ public class MeetUpController {
 
 
 
+    @ExceptionHandler
     @GetMapping
-
     public ResponseEntity<MeetupResponse> getAllMeetUps(){
         try {
             return ResponseEntity.ok(MeetupResponse.builder()
@@ -47,6 +47,7 @@ public class MeetUpController {
 
     @CrossOrigin
     @PostMapping
+    @ExceptionHandler
     public ResponseEntity<MeetupResponse> addMeetup(
             @RequestBody MeetupRequest addMeetupRequest
     ){
@@ -56,6 +57,7 @@ public class MeetUpController {
 
     @CrossOrigin
     @DeleteMapping("/{meetupId}")
+    @ExceptionHandler
     public ResponseEntity<MeetupResponse> deleteMeetup(
             @PathVariable("meetupId") Long meetupId
     ){
@@ -64,6 +66,7 @@ public class MeetUpController {
 
     @CrossOrigin
     @PutMapping("/{meetupId}")
+    @ExceptionHandler
     public ResponseEntity<MeetupResponse> updateMeetup(
             @PathVariable Long meetupId,
             @RequestBody MeetupRequest meetupRequest
