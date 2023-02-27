@@ -1,12 +1,12 @@
-package com.anas.meetup.meetup;
+package com.anas.meetup.controller;
 
 
+import com.anas.meetup.payload.MeetupRequest;
+import com.anas.meetup.payload.MeetupResponse;
+import com.anas.meetup.service.MeetupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController

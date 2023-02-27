@@ -1,7 +1,11 @@
-package com.anas.meetup.meetup;
+package com.anas.meetup.service;
 
-import com.anas.meetup.user.User;
-import com.anas.meetup.user.UserRepo;
+import com.anas.meetup.payload.MeetupRequest;
+import com.anas.meetup.payload.MeetupResponse;
+import com.anas.meetup.model.MeetUp;
+import com.anas.meetup.model.User;
+import com.anas.meetup.repo.MeetUpRepo;
+import com.anas.meetup.repo.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;

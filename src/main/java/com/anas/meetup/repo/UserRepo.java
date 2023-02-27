@@ -1,5 +1,6 @@
-package com.anas.meetup.user;
+package com.anas.meetup.repo;
 
+import com.anas.meetup.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
