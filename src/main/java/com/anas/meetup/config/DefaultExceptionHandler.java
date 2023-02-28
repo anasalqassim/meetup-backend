@@ -19,7 +19,9 @@ public class DefaultExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler({SignatureException.class,ExpiredJwtException.class, MalformedJwtException.class, AccessDeniedException.class,AuthenticationException.class})
     @ResponseBody
-    public ResponseEntity<AuthResponse> handleAuthenticationException(Exception ex) {
+    public ResponseEntity<AuthResponse> handleAuthenticationException(
+            ExpiredJwtException ex
+    ) {
 
         AuthResponse re =  AuthResponse
                 .builder()
