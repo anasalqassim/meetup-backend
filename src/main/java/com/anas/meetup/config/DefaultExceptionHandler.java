@@ -17,7 +17,7 @@ import java.security.SignatureException;
 @ControllerAdvice
 public class DefaultExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler({SignatureException.class,ExpiredJwtException.class, MalformedJwtException.class, AccessDeniedException.class,AuthenticationException.class})
+    @ExceptionHandler(ExpiredJwtException.class)
     @ResponseBody
     public ResponseEntity<AuthResponse> handleAuthenticationException(
             ExpiredJwtException ex
