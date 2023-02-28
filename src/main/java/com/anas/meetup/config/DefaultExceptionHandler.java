@@ -1,6 +1,7 @@
 package com.anas.meetup.config;
 
 import com.anas.meetup.payload.AuthResponse;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.MalformedJwtException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,7 @@ import java.nio.file.AccessDeniedException;
 @ControllerAdvice
 public class DefaultExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler({ AuthenticationException.class , MalformedJwtException.class, AccessDeniedException.class})
+    @ExceptionHandler({ExpiredJwtException.class, MalformedJwtException.class, AccessDeniedException.class,AuthenticationException.class})
     @ResponseBody
     public ResponseEntity<AuthResponse> handleAuthenticationException(Exception ex) {
 
