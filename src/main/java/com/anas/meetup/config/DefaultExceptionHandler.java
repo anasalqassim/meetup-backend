@@ -25,7 +25,8 @@ public class DefaultExceptionHandler extends ResponseEntityExceptionHandler {
 
         AuthResponse re =  AuthResponse
                 .builder()
-                .message("Authentication failed :"+ex.getLocalizedMessage())
+                .message("sorry :"+ex
+                        .getLocalizedMessage())
                 .httpCode(HttpStatus.UNAUTHORIZED.toString())
                 .build();
 

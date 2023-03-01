@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 @Data
 @Builder
@@ -42,5 +43,8 @@ public class MeetUp {
 
     @Builder.Default
     private LocalDate creationDate = LocalDate.now();
+
+    @ManyToMany(mappedBy = "favoriteMeetup")
+    private Set<User> favorites;
 
 }

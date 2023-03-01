@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Builder
@@ -46,6 +47,13 @@ public class User implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @ManyToMany
+    @JoinTable(
+            name = "favorite",
+            joinColumns = @JoinColumn(name = "user_id",referencedColumnName = "userId"),
+            inverseJoinColumns = @JoinColumn(name = "meetup_id",referencedColumnName = "meetupId"))
+    private Set<MeetUp> favoriteMeetup;
 
 
     @Override
