@@ -48,7 +48,7 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "favorite",
             joinColumns = @JoinColumn(name = "user_id",referencedColumnName = "userId"),
