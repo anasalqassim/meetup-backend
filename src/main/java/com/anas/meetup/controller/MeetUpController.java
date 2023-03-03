@@ -73,7 +73,6 @@ public class MeetUpController {
 
     @CrossOrigin
     @PutMapping("/{meetupId}")
-    @ExceptionHandler({ExpiredJwtException.class, MalformedJwtException.class, AccessDeniedException.class, AuthenticationException.class,Exception.class})
     public ResponseEntity<MeetupResponse> updateMeetup(
             @PathVariable Long meetupId
     ){
