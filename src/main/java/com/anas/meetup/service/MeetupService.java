@@ -1,9 +1,11 @@
 package com.anas.meetup.service;
 
-import com.anas.meetup.payload.MeetupRequest;
-import com.anas.meetup.payload.MeetupResponse;
+import com.anas.meetup.model.Favorite;
 import com.anas.meetup.model.MeetUp;
 import com.anas.meetup.model.User;
+import com.anas.meetup.payload.MeetupRequest;
+import com.anas.meetup.payload.MeetupResponse;
+import com.anas.meetup.repo.FavoriteRepo;
 import com.anas.meetup.repo.MeetUpRepo;
 import com.anas.meetup.repo.UserRepo;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +27,9 @@ public class MeetupService {
     @Autowired
     private UserRepo userRepo;
 
+    @Autowired
+    private FavoriteRepo favoriteRepo;
+
     public List<MeetUp> getAllMeetups() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
@@ -41,7 +46,6 @@ public class MeetupService {
 
         User user = ((User) auth.getPrincipal());
 
-        System.out.println(user);
         MeetUp meetUp = MeetUp.builder()
                 .title(meetupRequest.getTitle())
                 .address(meetupRequest.getAddress())
@@ -100,5 +104,40 @@ public class MeetupService {
         return MeetupResponse.builder()
                 .state("No Meetup with this id")
                 .build();
+    }
+
+    @Transactional
+    public MeetupResponse addFavorite(Long meetupId) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        User user = ((User) auth.getPrincipal());
+
+        Optional<MeetUp> meetUpOptional = meetUpRepo.findById(meetupId);
+        if (meetUpOptional.isPresent()){
+            Favorite favorite = Favorite.builder()
+                    .meetUp(meetUpOptional.get())
+                    .user(user)
+                    .build();
+            favoriteRepo.save(favorite);
+
+            return  MeetupResponse.builder().state("favorite has been added").build();
+        }
+
+        return  MeetupResponse.builder().state("something gone wrong").build();
+    }
+
+    public MeetupResponse getFavorites() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        User user = ((User) auth.getPrincipal());
+
+       Optional<List<Favorite>> optionalMeetUpList = favoriteRepo.getByUserUserId(user.getUserId());
+        if (optionalMeetUpList.isPresent()){
+           List<Favorite> favorites = optionalMeetUpList.get();
+          List<MeetUp> meetUps = favorites.stream().map(Favorite::getMeetUp).toList();
+          return MeetupResponse.builder().state("ok").meetUps(meetUps).build();
+        }else {
+            return MeetupResponse.builder().state("sorry something gone wrong").build();
+        }
     }
 }

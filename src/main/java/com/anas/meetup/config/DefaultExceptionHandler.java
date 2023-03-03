@@ -17,7 +17,7 @@ import java.security.SignatureException;
 @ControllerAdvice
 public class DefaultExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler({ExpiredJwtException.class, MalformedJwtException.class, AccessDeniedException.class,AuthenticationException.class})
+    @ExceptionHandler({ExpiredJwtException.class, MalformedJwtException.class, AccessDeniedException.class,AuthenticationException.class,Exception.class})
     @ResponseBody
     public ResponseEntity<AuthResponse> handleAuthenticationException(
             Exception ex
@@ -25,7 +25,7 @@ public class DefaultExceptionHandler extends ResponseEntityExceptionHandler {
 
         AuthResponse re =  AuthResponse
                 .builder()
-                .message("sorry :"+ex
+                .message("sorry : "+ex
                         .getLocalizedMessage())
                 .httpCode(HttpStatus.UNAUTHORIZED.toString())
                 .build();

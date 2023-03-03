@@ -7,29 +7,21 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(
-        name = "_meetup"
-)
-public class MeetUp {
+
+public class Favorite {
 
     @Id
     @GeneratedValue
-    private Long meetupId;
-    @Column(
-            nullable = false
-    )
-    private String title;
-    private String imgUrl;
-    private String address;
-    private String description;
-    private LocalDate meetDate;
+    private Long favoriteId;
+
+
+
+
 
     @ManyToOne(
             cascade = CascadeType.MERGE
@@ -40,8 +32,15 @@ public class MeetUp {
     )
     private User user;
 
-    @Builder.Default
-    private LocalDate creationDate = LocalDate.now();
+
+    @ManyToOne(
+            cascade = CascadeType.MERGE
+    )
+    @JoinColumn(
+            name = "meetup_id",
+            referencedColumnName = "meetupId"
+    )
+    private MeetUp meetUp;
 
 
 
