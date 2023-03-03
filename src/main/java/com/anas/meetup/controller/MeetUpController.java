@@ -72,8 +72,8 @@ public class MeetUpController {
     }
 
     @CrossOrigin
-    @PutMapping("/{meetupId}")
-    public ResponseEntity<MeetupResponse> updateMeetup(
+    @GetMapping("/{meetupId}")
+    public ResponseEntity<MeetupResponse> addFavorite(
             @PathVariable Long meetupId
     ){
         return ResponseEntity.ok(meetupService.addFavorite(meetupId));
