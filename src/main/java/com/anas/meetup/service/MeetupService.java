@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -139,5 +140,32 @@ public class MeetupService {
         }else {
             return MeetupResponse.builder().state("sorry something gone wrong").build();
         }
+    }
+
+    public MeetupResponse delFavorite(Long meetupId) {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        User user = ((User) auth.getPrincipal());
+
+        Optional<List<Favorite>> optionalMeetUpList = favoriteRepo.getByUserUserId(user.getUserId());
+        if (optionalMeetUpList.isPresent()){
+            List<Favorite> favorites = optionalMeetUpList.get();
+            Optional<Favorite> favorite = favorites.stream().filter(favoritee ->
+                    Objects.equals(favoritee.getMeetUp().getMeetupId(), meetupId)
+            ).findFirst();
+
+
+            favorite.ifPresent(favorite1 -> {
+                favoriteRepo.deleteById(favorite1.getFavoriteId());
+            });
+
+
+            return MeetupResponse.builder().state("favorite has been deleted").build();
+        }else {
+            return MeetupResponse.builder().state("sorry something gone wrong").build();
+        }
+
+
     }
 }

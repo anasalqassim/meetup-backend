@@ -78,6 +78,13 @@ public class MeetUpController {
     ){
         return ResponseEntity.ok(meetupService.addFavorite(meetupId));
     }
+    @CrossOrigin
+    @DeleteMapping("/favorites/{meetupId}")
+    public ResponseEntity<MeetupResponse> delFavorite(
+            @PathVariable Long meetupId
+    ){
+        return ResponseEntity.ok(meetupService.delFavorite(meetupId));
+    }
 
     @CrossOrigin
     @GetMapping("/favorites")
